@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Circles</title>
+	<link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
+	<script type="text/javascript" src="./assets/js/lib/paper-full.min.js"></script>
+<script type="text/paperscript" canvas="myCanvas">
+var circles=[];
+function onKeyDown(event) {
+		limitx=view.size.width;
+		limity=view.size.height;
+		x=getRandomArbitrary(0,limitx);
+		y=getRandomArbitrary(0,limity);		
+		var color=createRandomColor();
+		circles.push(new Path.Circle({center:new Point(x, y),radius: 500,fillColor:color}));
+}
+
+	function createRandomColor(){
+		var r=getRandomArbitrary(0,255);
+		var g=getRandomArbitrary(0,255);
+		var b=getRandomArbitrary(0,255);
+		var color='rgb('+r+', '+g+', '+b+')';
+		return color;
+	}
+
+	
+	function onFrame(event){
+		for(var i=0;i<circles.length;i++){
+		circles[i].fillColor.hue += 1;
+		circles[i].scale(0.9);
+	}
+	}
+	
+
+  function getRandomArbitrary(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
+</script>
+</head>
+<body>
+
+<canvas id="myCanvas" resize></canvas>
+
+
+
+</body>
+</html>
